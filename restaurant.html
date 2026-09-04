@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant — Complexe Le Kyzito</title>
+<meta name="description" content="Le restaurant du Complexe Le Kyzito à Kaffrine, sous la paillote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-restaurant">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Le Kyzito</a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-accueil">Accueil</a>
+      <a href="chambres.html" class="nav-chambres">Chambres</a>
+      <a href="le-lieu.html" class="nav-lelieu">Le lieu</a>
+      <a href="restaurant.html" class="nav-restaurant">Restaurant</a>
+      <a href="events.html" class="nav-events">Événements</a>
+      <a href="reservation.html" class="nav-reservation nav-cta">Réservation</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="split-header">
+    <div class="split-header-media">
+      <img src="images/paillote.jpg" alt="Coin restaurant sous paillote, chaises rouges">
+    </div>
+    <div class="split-header-content">
+      <span class="intro-mark" aria-hidden="true"></span>
+      <h1>Le restaurant</h1>
+      <p>Cuisine locale et grillades, servies à l'ombre de la paillote — pour les clients de l'hôtel comme pour les visiteurs de passage.</p>
+    </div>
+  </section>
+
+  <section class="menu">
+    <div class="section-head">
+      <h2>La carte</h2>
+      <p class="room-note">Carte indicative — à confirmer avec les plats réellement proposés.</p>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-block">
+        <h3>Entrées</h3>
+        <ul class="menu-list">
+          <li><span>Salade locale</span><span>1 500 CFA</span></li>
+          <li><span>Accras de poisson</span><span>2 000 CFA</span></li>
+        </ul>
+      </div>
+      <div class="menu-block">
+        <h3>Plats</h3>
+        <ul class="menu-list">
+          <li><span>Thiéboudienne</span><span>3 500 CFA</span></li>
+          <li><span>Poulet yassa</span><span>3 500 CFA</span></li>
+          <li><span>Grillades du jour</span><span>4 000 CFA</span></li>
+        </ul>
+      </div>
+      <div class="menu-block">
+        <h3>Boissons</h3>
+        <ul class="menu-list">
+          <li><span>Bissap / Bouye</span><span>1 000 CFA</span></li>
+          <li><span>Eau minérale</span><span>500 CFA</span></li>
+          <li><span>Boissons gazeuses</span><span>1 000 CFA</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <h2>Envie d'y manger ce soir ?</h2>
+    <a href="https://wa.me/221784520000" class="btn btn-primary" target="_blank" rel="noopener">Réserver une table sur WhatsApp</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-title">Complexe Le Kyzito</p>
+      <p>Kaffrine, Sénégal</p>
+    </div>
+    <div>
+      <p><a href="tel:+221784520000">+221 78 452 00 00</a></p>
+      <p><a href="mailto:contact@lekyzito.sn">contact@lekyzito.sn</a></p>
+      <a href="https://wa.me/221784520000" class="btn btn-outline" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+    </div>
+  </div>
+  <p class="footer-copy">© <span id="year"></span> Complexe Le Kyzito. Tous droits réservés.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

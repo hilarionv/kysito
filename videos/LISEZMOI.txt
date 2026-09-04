@@ -1,0 +1,13 @@
+Dépose ici tes deux fichiers vidéo, avec exactement ces noms :
+
+- hero-desktop.mp4  → format PAYSAGE (16:9, ex. 1920x1080), utilisée sur ordinateur
+- hero-mobile.mp4   → format PORTRAIT (9:16, ex. 1080x1920), utilisée sur téléphone
+
+Le site les détecte automatiquement une fois déposées — rien d'autre à changer.
+
+Conseils :
+- Vidéo courte, en boucle (8-15 secondes suffisent, sans son puisqu'elle joue en muet)
+- Format MP4 (H.264), pour la compatibilité la plus large
+- Poids conseillé : sous les 8-10 Mo par vidéo pour un chargement rapide
+- Si tu n'as qu'un des deux formats pour le moment, dépose uniquement celui-là :
+  le site garde l'image de secours pour l'autre taille d'écran en attendant.

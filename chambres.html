@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chambres — Complexe Le Kyzito</title>
+<meta name="description" content="Les chambres du Complexe Le Kyzito à Kaffrine : Standard, Moutarde, Familiale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-chambres">
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Le Kyzito</a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-accueil">Accueil</a>
+      <a href="chambres.html" class="nav-chambres">Chambres</a>
+      <a href="le-lieu.html" class="nav-lelieu">Le lieu</a>
+      <a href="restaurant.html" class="nav-restaurant">Restaurant</a>
+      <a href="events.html" class="nav-events">Événements</a>
+      <a href="reservation.html" class="nav-reservation nav-cta">Réservation</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <span class="intro-mark" aria-hidden="true"></span>
+    <h1>Les chambres</h1>
+    <p>Des chambres claires, chacune avec sa touche de couleur.</p>
+  </section>
+
+  <section class="rooms">
+    <div class="room-grid">
+
+      <article class="room-card room-card-featured">
+        <div class="room-visual">
+          <img src="images/room-yellow.jpg" alt="Chambre avec mur géométrique jaune et bleu, literie blanche">
+        </div>
+        <div class="room-info">
+          <h3>Chambre VIP</h3>
+          <p class="room-price">40 000 CFA / nuit</p>
+          <p>Lit double, mur graphique jaune et bleu pétrole, salle d'eau privée, rangements intégrés.</p>
+          <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+        </div>
+      </article>
+
+      <article class="room-card">
+        <div class="room-visual room-visual-plain" aria-hidden="true"></div>
+        <div class="room-info">
+          <h3>Chambre Simple</h3>
+          <p class="room-price">25 000 CFA / nuit</p>
+          <p>Lit double, ventilateur, salle d'eau privée. Simple et lumineuse.</p>
+          <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+        </div>
+      </article>
+
+      <article class="room-card">
+        <div class="room-visual room-visual-plain" aria-hidden="true"></div>
+        <div class="room-info">
+          <h3>Suite</h3>
+          <p class="room-price">50 000 CFA / nuit</p>
+          <p>Deux lits, jusqu'à 4 personnes, idéale pour les familles de passage.</p>
+          <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+        </div>
+      </article>
+
+    </div>
+    <p class="room-note">Photos des chambres Standard et Familiale à venir — celles-ci sont indicatives. Prix à confirmer.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <p class="footer-title">Complexe Le Kyzito</p>
+      <p>Kaffrine, Sénégal</p>
+    </div>
+    <div>
+      <p><a href="tel:+221784520000">+221 78 452 00 00</a></p>
+      <p><a href="mailto:contact@lekyzito.sn">contact@lekyzito.sn</a></p>
+      <a href="https://wa.me/221784520000" class="btn btn-outline" target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+    </div>
+  </div>
+  <p class="footer-copy">© <span id="year"></span> Complexe Le Kyzito. Tous droits réservés.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
