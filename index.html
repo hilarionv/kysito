@@ -34,11 +34,11 @@
   <!-- HERO VIDEO (desktop paysage / mobile portrait, avec repli sur image) -->
   <section class="hero-video">
     <div class="hero-video-media">
-      <video class="hero-video-el" id="heroVideo" autoplay muted loop playsinline poster="images/pool.jpg">
-        <source src="images/IMG_9457.mov" media="(min-width: 768px)" type="video/mp4">
+      <video class="hero-video-el" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="images/hero-aerial.jpg">
+        <source src="videos/hero-desktop.mp4" media="(min-width: 768px)" type="video/mp4">
         <source src="videos/hero-mobile.mp4" media="(max-width: 767px)" type="video/mp4">
       </video>
-
+      <img src="images/hero-aerial.jpg" alt="Vue aérienne du Complexe Le Kyzito, tourelles et piscine" class="hero-video-still" id="heroFallbackImg">
       <div class="hero-video-overlay"></div>
       <span class="hero-video-badge" id="heroBadge">Vidéo à venir</span>
     </div>
@@ -61,7 +61,7 @@
 
   <!-- TEASERS -->
   <section class="teasers">
-    <div class="teaser-card">
+    <div class="teaser-card teaser-card-big">
       <a href="chambres.html" class="teaser-media"><img src="images/room-yellow.jpg" alt="Chambre VIP"></a>
       <div class="teaser-body">
         <h3>Chambres</h3>
@@ -70,15 +70,23 @@
       </div>
     </div>
     <div class="teaser-card">
-      <a href="restaurant.html" class="teaser-media"><img src="images/paillote.jpg" alt="Coin restaurant sous paillote"></a>
+      <a href="le-lieu.html" class="teaser-media"><img src="images/pool-wide.jpg" alt="Piscine du complexe"></a>
+      <div class="teaser-body">
+        <h3>Piscine</h3>
+        <p>Accès piscine à la journée, même sans réserver de chambre.</p>
+        <a href="https://wa.me/221784520000?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20un%20acc%C3%A8s%20piscine" class="btn btn-outline btn-small" target="_blank" rel="noopener">Réserver</a>
+      </div>
+    </div>
+    <div class="teaser-card">
+      <a href="restaurant.html" class="teaser-media"><img src="images/restaurant-poolside.jpg" alt="Restaurant en terrasse au bord de la piscine"></a>
       <div class="teaser-body">
         <h3>Restaurant</h3>
         <p>Cuisine locale, servie à l'ombre de la paillote.</p>
         <a href="https://wa.me/221784520000" class="btn btn-outline btn-small" target="_blank" rel="noopener">Réserver</a>
       </div>
     </div>
-    <div class="teaser-card">
-      <a href="le-lieu.html" class="teaser-media"><img src="images/garden-lounge.jpg" alt="Jardin intérieur"></a>
+    <div class="teaser-card teaser-card-big">
+      <a href="le-lieu.html" class="teaser-media"><img src="images/rooftop-lounge.jpg" alt="Espaces communs du complexe"></a>
       <div class="teaser-body">
         <h3>Le lieu</h3>
         <p>Jardin, piscine et espaces communs — visite en images.</p>
@@ -86,7 +94,7 @@
       </div>
     </div>
     <div class="teaser-card">
-      <a href="events.html" class="teaser-media"><img src="images/IMG_9280.HEIC" alt="Façade du complexe"></a>
+      <a href="events.html" class="teaser-media"><img src="images/conference-room.jpg" alt="Salle de conférence équipée"></a>
       <div class="teaser-body">
         <h3>Événements</h3>
         <p>Mariages, baptêmes, réunions — le Kyzito vous accueille.</p>
@@ -102,12 +110,10 @@
       <p>Un aperçu de la piscine, du jardin et des espaces communs.</p>
     </div>
     <div class="gallery-teaser-grid">
-      <a href="le-lieu.html"><img src="images/pool.jpg" alt="Piscine"></a>
-      <a href="le-lieu.html"><img src="images/IMG_9328.heic" alt="Jardin intérieur"></a>
-      <a href="le-lieu.html"><img src="images/IMG_9398.heic" alt="Paillote"></a>
-      <a href="le-lieu.html"><img src="images/IMG_9317.heic" alt="Façade"></a>
-      <a href="le-lieu.html"><img src="images/IMG_9363.heic" alt="Façade"></a>
-     
+      <a href="le-lieu.html" class="gallery-teaser-big"><img src="images/pool-wide.jpg" alt="Piscine"></a>
+      <a href="le-lieu.html"><img src="images/rooftop-lounge.jpg" alt="Lounge en hauteur"></a>
+      <a href="le-lieu.html" class="gallery-teaser-tall"><img src="images/lounge-shade.jpg" alt="Coin détente à l'ombre"></a>
+      <a href="le-lieu.html"><img src="images/pool-second.jpg" alt="Deuxième piscine"></a>
     </div>
     <a href="le-lieu.html" class="btn btn-outline">Voir toute la galerie</a>
   </section>
@@ -117,20 +123,36 @@
     <div class="section-head">
       <h2>Avis clients</h2>
       <p class="reviews-score"><strong>4,0 / 5</strong> sur Google — 65 avis</p>
+      <a href="https://search.google.com/local/writereview?placeid=ChIJERtE66oT6Q4RpHap3uV0GmU" class="btn btn-outline btn-small" target="_blank" rel="noopener">Laisser un avis sur Google</a>
     </div>
-    <div class="reviews-grid">
-      <blockquote class="review-card">
-        <p>« Les visiteurs de passage apprécient la nourriture, l'ambiance et la piscine, à un bon rapport qualité-prix. »</p>
-        <cite>Avis Google (reformulé)</cite>
-      </blockquote>
-      <blockquote class="review-card">
-        <p>« Chambres très propres et bien éclairées ; le poulet dibi servi au restaurant a été particulièrement apprécié. »</p>
-        <cite>Avis Google (reformulé)</cite>
-      </blockquote>
-      <blockquote class="review-card">
-        <p>« Une adresse recommandée dans la région pour la qualité de la cuisine, la propreté des chambres et l'accueil. »</p>
-        <cite>Avis Google (reformulé)</cite>
-      </blockquote>
+    <div class="reviews-marquee">
+      <div class="reviews-track">
+        <blockquote class="review-card">
+          <p>« Les visiteurs de passage apprécient la nourriture, l'ambiance et la piscine, à un bon rapport qualité-prix. »</p>
+          <cite>Avis Google (reformulé)</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>« Chambres très propres et bien éclairées ; le poulet dibi servi au restaurant a été particulièrement apprécié. »</p>
+          <cite>Avis Google (reformulé)</cite>
+        </blockquote>
+        <blockquote class="review-card">
+          <p>« Une adresse recommandée dans la région pour la qualité de la cuisine, la propreté des chambres et l'accueil. »</p>
+          <cite>Avis Google (reformulé)</cite>
+        </blockquote>
+        <!-- dupliqué pour la boucle infinie -->
+        <blockquote class="review-card" aria-hidden="true">
+          <p>« Les visiteurs de passage apprécient la nourriture, l'ambiance et la piscine, à un bon rapport qualité-prix. »</p>
+          <cite>Avis Google (reformulé)</cite>
+        </blockquote>
+        <blockquote class="review-card" aria-hidden="true">
+          <p>« Chambres très propres et bien éclairées ; le poulet dibi servi au restaurant a été particulièrement apprécié. »</p>
+          <cite>Avis Google (reformulé)</cite>
+        </blockquote>
+        <blockquote class="review-card" aria-hidden="true">
+          <p>« Une adresse recommandée dans la région pour la qualité de la cuisine, la propreté des chambres et l'accueil. »</p>
+          <cite>Avis Google (reformulé)</cite>
+        </blockquote>
+      </div>
     </div>
     <p class="room-note">Avis reformulés à partir de la fiche Google du complexe. On pourra brancher un vrai widget d'avis plus tard.</p>
   </section>

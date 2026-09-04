@@ -48,7 +48,12 @@
           <h3>Chambre VIP</h3>
           <p class="room-price">40 000 CFA / nuit</p>
           <p>Lit double, mur graphique jaune et bleu pétrole, salle d'eau privée, rangements intégrés.</p>
-          <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+          <div class="room-actions">
+            <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+            <button type="button" class="btn btn-ghost btn-small" data-room-modal
+              data-room-name="Chambre VIP"
+              data-room-images="images/room-yellow.jpg">Voir</button>
+          </div>
         </div>
       </article>
 
@@ -58,23 +63,43 @@
           <h3>Chambre Simple</h3>
           <p class="room-price">25 000 CFA / nuit</p>
           <p>Lit double, ventilateur, salle d'eau privée. Simple et lumineuse.</p>
-          <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+          <div class="room-actions">
+            <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+          </div>
         </div>
       </article>
 
       <article class="room-card">
-        <div class="room-visual room-visual-plain" aria-hidden="true"></div>
+        <div class="room-visual room-visual-duo">
+          <img src="images/suite-bedroom.jpg" alt="Suite avec lit à baldaquin et moustiquaire" class="room-visual-main">
+          <img src="images/suite-living.jpg" alt="Salon et kitchenette de la Suite" class="room-visual-thumb">
+        </div>
         <div class="room-info">
           <h3>Suite</h3>
           <p class="room-price">50 000 CFA / nuit</p>
-          <p>Deux lits, jusqu'à 4 personnes, idéale pour les familles de passage.</p>
-          <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+          <p>Chambre avec lit à baldaquin, coin salon et kitchenette attenante. Deux pièces, jusqu'à 4 personnes.</p>
+          <div class="room-actions">
+            <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+            <button type="button" class="btn btn-ghost btn-small" data-room-modal
+              data-room-name="Suite"
+              data-room-images="images/suite-bedroom.jpg,images/suite-living.jpg">Voir</button>
+          </div>
         </div>
       </article>
 
     </div>
-    <p class="room-note">Photos des chambres Standard et Familiale à venir — celles-ci sont indicatives. Prix à confirmer.</p>
+    <p class="room-note">Photo de la Chambre Simple à venir. Le bouton "Voir" affiche une vidéo une fois disponible, sinon une petite galerie photo.</p>
   </section>
+
+  <!-- MODAL CHAMBRE (photo ou vidéo) -->
+  <div class="room-modal" id="roomModal" aria-hidden="true">
+    <div class="room-modal-backdrop" data-modal-close></div>
+    <div class="room-modal-panel" role="dialog" aria-modal="true" aria-labelledby="roomModalTitle">
+      <button type="button" class="room-modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <div class="room-modal-media" id="roomModalMedia"></div>
+      <h3 id="roomModalTitle"></h3>
+    </div>
+  </div>
 
 </main>
 

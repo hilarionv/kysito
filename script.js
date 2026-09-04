@@ -14,20 +14,71 @@ const heroFallback = document.getElementById('heroFallbackImg');
 const heroBadge = document.getElementById('heroBadge');
 
 if (heroVideo) {
-  let videoReady = false;
-
+  // Dès que la vidéo a assez de données pour démarrer, on l'affiche
+  // par-dessus l'image de repli et on retire le badge.
   heroVideo.addEventListener('loadeddata', () => {
-    videoReady = true;
     heroVideo.classList.add('is-ready');
     if (heroFallback) heroFallback.style.display = 'none';
     if (heroBadge) heroBadge.remove();
   });
 
-  // Si rien n'a chargé après un court délai (fichiers absents/erreur),
-  // on masque simplement le <video> et l'image de repli reste visible.
-  setTimeout(() => {
-    if (!videoReady) heroVideo.style.display = 'none';
-  }, 1500);
+  // Si la vidéo échoue vraiment à charger (fichier absent, format non
+  // supporté...), on ne fait rien de spécial : l'image de repli reste
+  // affichée par défaut puisque la vidéo n'a jamais display:block tant
+  // qu'elle n'a pas chargé. Pas besoin de minuteur qui la masquerait
+  // prématurément avant qu'elle ait eu le temps de charger.
+  heroVideo.addEventListener('error', () => {
+    heroVideo.remove();
+  });
+}
+
+// Modal vidéo chambre (activé automatiquement si des boutons
+// data-room-modal sont présents sur la page — ex. chambres.html)
+const roomModal = document.getElementById('roomModal');
+if (roomModal) {
+  const modalMedia = document.getElementById('roomModalMedia');
+  const modalTitle = document.getElementById('roomModalTitle');
+
+  document.querySelectorAll('[data-room-modal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.getAttribute('data-room-name') || '';
+      const videoSrc = btn.getAttribute('data-room-video') || '';
+      const imagesCsv = btn.getAttribute('data-room-images') || '';
+
+      modalTitle.textContent = name;
+
+      if (videoSrc) {
+        modalMedia.className = 'room-modal-media is-video';
+        modalMedia.innerHTML = `<video src="${videoSrc}" controls autoplay playsinline></video>`;
+      } else if (imagesCsv) {
+        const imgs = imagesCsv.split(',').map(s => s.trim()).filter(Boolean);
+        modalMedia.className = 'room-modal-media';
+        modalMedia.innerHTML = '<div class="room-modal-gallery">' +
+          imgs.map(src => `<img src="${src}" alt="${name}">`).join('') +
+          '</div>';
+      } else {
+        modalMedia.className = 'room-modal-media';
+        modalMedia.innerHTML = '';
+      }
+
+      roomModal.classList.add('is-open');
+      roomModal.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  roomModal.querySelectorAll('[data-modal-close]').forEach(el => {
+    el.addEventListener('click', closeRoomModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeRoomModal();
+  });
+
+  function closeRoomModal() {
+    roomModal.classList.remove('is-open');
+    roomModal.setAttribute('aria-hidden', 'true');
+    modalMedia.innerHTML = ''; // stoppe la vidéo en cours
+  }
 }
 
 // Menu mobile

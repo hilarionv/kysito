@@ -59,6 +59,16 @@ img { display: block; max-width: 100%; }
 .btn-full { width: 100%; text-align: center; }
 .btn-small { padding: 0.55em 1.2em; font-size: 0.85rem; }
 
+.btn-ghost { background: transparent; border-color: transparent; color: var(--ink-soft); padding: 0.55em 0.9em; font-size: 0.85rem; }
+.btn-ghost:hover { color: var(--ink); text-decoration: underline; }
+
+.room-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .intro-mark {
   display: block;
   width: 34px;
@@ -212,7 +222,7 @@ body.page-events .nav-events {
   margin: 0 auto;
   padding: 0 1.5rem 6rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
 }
 .teaser-card {
@@ -231,6 +241,12 @@ body.page-events .nav-events {
 .teaser-body h3 { font-size: 1.1rem; margin-bottom: 0.3em; }
 .teaser-body p { font-size: 0.88rem; margin-bottom: 1rem; }
 
+/* Quelques cartes plus grandes pour casser la grille uniforme */
+@media (min-width: 700px) {
+  .teaser-card-big { grid-column: span 2; }
+  .teaser-card-big .teaser-media { height: 210px; }
+}
+
 /* ---------- Gallery teaser (accueil) ---------- */
 .gallery-teaser {
   max-width: var(--max-width);
@@ -240,13 +256,18 @@ body.page-events .nav-events {
 }
 .gallery-teaser-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 80px;
   gap: 1rem;
   margin-bottom: 2rem;
+  text-align: left;
 }
+.gallery-teaser-grid a { display: block; grid-column: span 2; grid-row: span 2; }
+.gallery-teaser-grid a.gallery-teaser-big { grid-column: span 3; grid-row: span 4; }
+.gallery-teaser-grid a.gallery-teaser-tall { grid-column: span 1; grid-row: span 4; }
 .gallery-teaser-grid img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
   border-radius: var(--radius);
 }
@@ -254,16 +275,28 @@ body.page-events .nav-events {
 /* ---------- Reviews ---------- */
 .reviews { background: var(--off-white); padding: 5rem 0; }
 .reviews-score { font-size: 1rem; }
-.reviews-grid {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.section-head .btn { margin-top: 0.8rem; }
+
+.reviews-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.reviews-track {
+  display: flex;
   gap: 1.5rem;
+  width: max-content;
+  padding: 0 1.5rem;
+  animation: reviews-scroll 28s linear infinite;
+}
+.reviews-marquee:hover .reviews-track { animation-play-state: paused; }
+@keyframes reviews-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 .review-card {
   margin: 0;
+  flex: 0 0 320px;
   background: var(--white);
   border: 1px solid var(--sand-line);
   border-radius: var(--radius);
@@ -294,24 +327,32 @@ body.page-events .nav-events {
 .split-header-media img { width: 100%; height: 420px; object-fit: cover; }
 .split-header-content h1 { font-size: 2.4rem; }
 
-/* ---------- Gallery (le lieu) ---------- */
+/* ---------- Gallery (le lieu) — mosaïque à tailles variées ---------- */
 .gallery-grid {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1.5rem 5rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 140px;
+  gap: 1.2rem;
 }
-.gallery-grid figure { margin: 0; }
-.gallery-grid img {
+.gallery-item { margin: 0; display: flex; flex-direction: column; }
+.gallery-item img {
   width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
   border-radius: var(--radius);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  flex: 1;
 }
-.gallery-grid figcaption { font-size: 0.85rem; color: var(--ink-soft); }
+.gallery-item figcaption { font-size: 0.85rem; color: var(--ink-soft); }
+
+/* tailles : la plupart occupent 1 colonne x 2 rangées, certaines sont plus grandes */
+.gallery-item { grid-column: span 1; grid-row: span 2; }
+.gallery-item-big { grid-column: span 2; grid-row: span 3; }
+.gallery-item-wide { grid-column: span 2; grid-row: span 2; }
+.gallery-item-tall { grid-column: span 1; grid-row: span 3; }
 
 /* ---------- Section head ---------- */
 .section-head {
@@ -338,11 +379,37 @@ body.page-events .nav-events {
   overflow: hidden;
   border: 1px solid var(--sand-line);
 }
-.room-visual { line-height: 0; height: 220px; }
+.room-visual { line-height: 0; height: 220px; position: relative; }
 .room-visual img { width: 100%; height: 220px; object-fit: cover; }
 .room-visual-plain {
   background: linear-gradient(135deg, var(--mustard) 0%, var(--mustard) 45%, var(--petrol) 45%, var(--petrol) 100%);
   opacity: 0.85;
+}
+
+/* Deux photos superposées (desktop) : la principale en fond, une seconde
+   plus petite ancrée en bas à droite, avec un liseré blanc pour la détacher. */
+.room-visual-duo { overflow: visible; margin-bottom: 1.2rem; }
+.room-visual-duo .room-visual-main {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+.room-visual-duo .room-visual-thumb {
+  display: none;
+}
+@media (min-width: 901px) {
+  .room-visual-duo .room-visual-thumb {
+    display: block;
+    position: absolute;
+    width: 46%;
+    height: 130px;
+    object-fit: cover;
+    bottom: -1rem;
+    right: 1rem;
+    border: 4px solid var(--white);
+    box-shadow: 0 8px 20px rgba(20, 17, 13, 0.18);
+  }
 }
 .room-info { padding: 1.5rem; }
 .room-info h3 { font-size: 1.2rem; margin-bottom: 0.2em; }
@@ -353,6 +420,69 @@ body.page-events .nav-events {
   padding: 0 1.5rem;
   font-size: 0.85rem;
   font-style: italic;
+}
+
+/* ---------- Room video modal ---------- */
+.room-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.room-modal.is-open { display: flex; }
+.room-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 17, 13, 0.82);
+}
+.room-modal-panel {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius);
+  max-width: 780px;
+  width: 100%;
+  padding: 1.5rem;
+}
+.room-modal-media {
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.room-modal-media.is-video { aspect-ratio: 16 / 9; background: var(--ink); }
+.room-modal-media.is-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.room-modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.6rem;
+}
+.room-modal-gallery img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+.room-modal-panel h3 { margin: 0; font-size: 1.2rem; }
+.room-modal-close {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 /* ---------- Menu (restaurant) ---------- */
@@ -391,13 +521,14 @@ body.page-events .nav-events {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
-.event-card {
-  border: 1px solid var(--sand-line);
-  border-radius: var(--radius);
-  padding: 1.8rem;
-}
-.event-card h3 { font-size: 1.15rem; }
-.event-card p { font-size: 0.92rem; margin-bottom: 0; }
+.event-card { border: 1px solid var(--sand-line); border-radius: var(--radius); overflow: hidden; padding: 0; }
+.event-card-img { width: 100%; height: 160px; object-fit: cover; }
+.event-card h3, .event-card p { padding-left: 1.8rem; padding-right: 1.8rem; }
+.event-card h3 { margin-top: 1.8rem; font-size: 1.15rem; }
+.event-card p { padding-bottom: 1.8rem; font-size: 0.92rem; margin-bottom: 0; }
+
+.restaurant-strip { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem 3rem; }
+.restaurant-strip img { width: 100%; height: 340px; object-fit: cover; border-radius: var(--radius); }
 
 /* ---------- CTA band ---------- */
 .cta-band {
@@ -486,8 +617,12 @@ body.page-events .nav-events {
   .hero-video-content { padding-bottom: 3rem; }
 
   .teasers { grid-template-columns: repeat(2, 1fr); }
-  .gallery-teaser-grid { grid-template-columns: repeat(2, 1fr); }
-  .reviews-grid { grid-template-columns: 1fr; }
+  .gallery-teaser-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 120px; }
+  .gallery-teaser-grid a.gallery-teaser-big { grid-column: span 2; grid-row: span 2; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 130px; }
+  .gallery-item-big { grid-column: span 2; grid-row: span 2; }
+  .gallery-item-wide { grid-column: span 2; }
+  .review-card { flex-basis: 260px; }
   .gallery-grid { grid-template-columns: 1fr; }
   .room-grid { grid-template-columns: 1fr; }
   .menu-grid { grid-template-columns: 1fr; gap: 2rem; }
