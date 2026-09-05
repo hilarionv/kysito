@@ -59,13 +59,19 @@
       </article>
 
       <article class="room-card">
-        <div class="room-visual room-visual-plain" aria-hidden="true"></div>
+        <div class="room-visual room-visual-duo">
+          <img src="images/simple-bed.jpg" alt="Chambre Simple, lit à moustiquaire, mur jaune et gris" class="room-visual-main">
+          <img src="images/simple-room.jpg" alt="Chambre Simple, vue sur la télévision et la climatisation" class="room-visual-thumb">
+        </div>
         <div class="room-info">
           <h3>Chambre Simple</h3>
           <p class="room-price">25 000 CFA / nuit</p>
-          <p>Lit double, ventilateur, salle d'eau privée. Simple et lumineuse.</p>
+          <p>Lit double à moustiquaire, climatisation, TV, salle d'eau privée. Simple et lumineuse.</p>
           <div class="room-actions">
             <a href="reservation.html" class="btn btn-outline btn-small">Réserver</a>
+            <button type="button" class="btn btn-ghost btn-small" data-room-modal
+              data-room-name="Chambre Simple"
+              data-room-images="images/simple-bed.jpg,images/simple-room.jpg">Voir</button>
           </div>
         </div>
       </article>
@@ -88,8 +94,6 @@
         </div>
       </article>
 
-    </div>
-    <p class="room-note">Photo de la Chambre Simple à venir.</p>
   </section>
 
   <!-- MODAL CHAMBRE (photo ou vidéo) -->
