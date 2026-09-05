@@ -89,7 +89,10 @@
           <textarea id="message" name="message" rows="3" placeholder="Précisions, demandes particulières..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-full">Envoyer la demande</button>
+        <div class="form-actions">
+          <button type="button" class="btn btn-primary" data-send="whatsapp">Envoyer par WhatsApp</button>
+          <button type="button" class="btn btn-outline" data-send="email">Envoyer par Email</button>
+        </div>
 
         <p class="form-status" id="formStatus" role="status"></p>
 

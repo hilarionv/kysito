@@ -99,49 +99,65 @@ mainNav.querySelectorAll('a').forEach(link => {
 
 // Formulaire de réservation
 // ---------------------------------------------------------
-// Aucun appel serveur pour l'instant. Le formulaire ouvre WhatsApp
-// avec un message pré-rempli contenant les infos de la demande.
+// Aucun appel serveur pour l'instant. Deux boutons : l'un ouvre WhatsApp
+// avec un message pré-rempli, l'autre ouvre l'appli mail (Gmail, etc.)
+// avec un email pré-rempli — au client de choisir son canal préféré.
 //
-// -> Remplacer NUMERO_WHATSAPP par le vrai numéro (format 221XXXXXXXXX)
+// -> Remplacer NUMERO_WHATSAPP et EMAIL_CONTACT par les vraies coordonnées
 //
 // Alternative possible plus tard : brancher sur Formspree ou un
-// backend Supabase (comme sur CMD) pour stocker les demandes et
-// envoyer un email automatique.
+// backend Supabase (comme sur CMD) pour stocker les demandes.
 // ---------------------------------------------------------
 
 const NUMERO_WHATSAPP = '221784520000'; // à remplacer par le vrai numéro
+const EMAIL_CONTACT = 'contact@lekyzito.sn'; // à remplacer par la vraie adresse
 
 const form = document.getElementById('reservationForm');
 const status = document.getElementById('formStatus');
 
 // Ce script est partagé par toutes les pages : le formulaire n'existe
-// que sur reservation.html, donc on ne branche l'écouteur que s'il est présent.
+// que sur reservation.html et l'accueil, donc on ne branche l'écouteur
+// que s'il est présent.
 if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
+  form.querySelectorAll('[data-send]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Les boutons sont type="button" : on valide le formulaire nous-mêmes
+      // avant de construire le message (comme le ferait un submit natif).
+      if (!form.reportValidity()) return;
 
-    const data = Object.fromEntries(new FormData(form).entries());
+      const data = Object.fromEntries(new FormData(form).entries());
 
-    if (new Date(data.depart) <= new Date(data.arrivee)) {
-      status.textContent = "La date de départ doit être après la date d'arrivée.";
-      status.className = 'form-status error';
-      return;
-    }
+      if (new Date(data.depart) <= new Date(data.arrivee)) {
+        status.textContent = "La date de départ doit être après la date d'arrivée.";
+        status.className = 'form-status error';
+        return;
+      }
 
-    const message =
-      `Demande de réservation — Complexe Le Kyzito%0A` +
-      `Nom : ${data.nom}%0A` +
-      `Téléphone : ${data.telephone}%0A` +
-      `Arrivée : ${data.arrivee}%0A` +
-      `Départ : ${data.depart}%0A` +
-      `Chambre : ${data.chambre}%0A` +
-      `Voyageurs : ${data.personnes}%0A` +
-      (data.message ? `Message : ${data.message}` : '');
+      const channel = btn.getAttribute('data-send');
 
-    window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${message}`, '_blank');
+      const lines = [
+        `Nom : ${data.nom}`,
+        `Téléphone : ${data.telephone}`,
+        `Arrivée : ${data.arrivee}`,
+        `Départ : ${data.depart}`,
+        `Chambre : ${data.chambre}`,
+        `Voyageurs : ${data.personnes}`,
+      ];
+      if (data.message) lines.push(`Message : ${data.message}`);
 
-    status.textContent = 'Votre demande a été préparée sur WhatsApp — il ne reste qu\'à l\'envoyer.';
-    status.className = 'form-status success';
-    form.reset();
+      if (channel === 'whatsapp') {
+        const text = encodeURIComponent(`Demande de réservation — Complexe Le Kyzito\n${lines.join('\n')}`);
+        window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${text}`, '_blank');
+        status.textContent = 'Votre demande a été préparée sur WhatsApp — il ne reste qu\'à l\'envoyer.';
+      } else {
+        const subject = encodeURIComponent('Demande de réservation — Complexe Le Kyzito');
+        const body = encodeURIComponent(lines.join('\n'));
+        window.location.href = `mailto:${EMAIL_CONTACT}?subject=${subject}&body=${body}`;
+        status.textContent = 'Votre demande a été préparée dans votre application email — il ne reste qu\'à l\'envoyer.';
+      }
+
+      status.className = 'form-status success';
+      form.reset();
+    });
   });
 }
