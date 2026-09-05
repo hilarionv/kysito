@@ -39,14 +39,28 @@
 
   <section class="gallery-grid">
     <figure class="gallery-item gallery-item-big"><img src="images/hero-aerial.jpg" alt="Vue aérienne des tourelles et de la piscine"></figure>
-    <figure class="gallery-item"><img src="images/pool-wide.jpg" alt="Piscine principale"></figure>
+    <figure class="gallery-item gallery-item-video" data-room-modal data-room-name="Piscine et tourelles" data-room-video="videos/lelieu-pool.mp4">
+      <img src="images/pool-wide.jpg" alt="Vidéo : piscine et tourelles">
+      <span class="gallery-play" aria-hidden="true">▶</span>
+    </figure>
     <figure class="gallery-item gallery-item-tall"><img src="images/rooftop-lounge.jpg" alt="Lounge en hauteur au toit rouge"></figure>
     <figure class="gallery-item gallery-item-wide"><img src="images/pool-second.jpg" alt="Deuxième piscine du complexe"></figure>
     <figure class="gallery-item"><img src="images/lounge-shade.jpg" alt="Transats à l'ombre d'un arbre"></figure>
     <figure class="gallery-item"><img src="images/aerial-terrace.jpg" alt="Vue aérienne de la terrasse"></figure>
     <figure class="gallery-item gallery-item-tall"><img src="images/paillote.jpg" alt="Coin salon sous paillote"></figure>
     <figure class="gallery-item"><img src="images/garden-lounge.jpg" alt="Jardin intérieur avec mobilier en palettes"></figure>
+    <figure class="gallery-item"><img src="images/decor-mj.jpg" alt="Détail de décoration, portrait encadré"></figure>
   </section>
+
+  <!-- MODAL VIDÉO -->
+  <div class="room-modal" id="roomModal" aria-hidden="true">
+    <div class="room-modal-backdrop" data-modal-close></div>
+    <div class="room-modal-panel" role="dialog" aria-modal="true" aria-labelledby="roomModalTitle">
+      <button type="button" class="room-modal-close" data-modal-close aria-label="Fermer">&times;</button>
+      <div class="room-modal-media" id="roomModalMedia"></div>
+      <h3 id="roomModalTitle"></h3>
+    </div>
+  </div>
 
   <section class="intro">
     <div class="intro-inner">
