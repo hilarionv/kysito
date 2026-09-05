@@ -133,3 +133,32 @@ if (form) {
     });
   });
 }
+
+// Animations au scroll (fade-up)
+// ---------------------------------------------------------
+// On ajoute la classe .reveal aux blocs répétés du site (cartes, figures...)
+// en JS plutôt que dans chaque page HTML : si le JS ne tourne pas, le
+// contenu reste visible par défaut (pas de risque de rester caché).
+// Un IntersectionObserver révèle chaque bloc la première fois qu'il
+// entre dans l'écran, avec un léger décalage en cascade dans les grilles.
+const revealTargets = document.querySelectorAll(
+  '.teaser-card, .room-card, .gallery-item, .review-card, .event-card, ' +
+  '.menu-block, .space-card, .place-figure, .section-head, .intro-inner'
+);
+
+if (revealTargets.length && 'IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealTargets.forEach((el, i) => {
+    el.classList.add('reveal');
+    el.style.transitionDelay = `${(i % 4) * 0.08}s`;
+    observer.observe(el);
+  });
+}

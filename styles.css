@@ -77,6 +77,33 @@ img { display: block; max-width: 100%; }
   margin-bottom: 1.2rem;
 }
 
+/* ---------- Animations d'entrée (header, hero) ---------- */
+@keyframes fadeDownIn {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUpIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.site-header { animation: fadeDownIn 0.6s ease both; }
+.hero-video-content > * {
+  opacity: 0;
+  animation: fadeUpIn 0.7s ease forwards;
+}
+.hero-video-content .hero-eyebrow { animation-delay: 0.15s; }
+.hero-video-content h1 { animation-delay: 0.3s; }
+.hero-video-content .hero-lede { animation-delay: 0.45s; }
+.hero-video-content .btn { animation-delay: 0.6s; }
+
+/* ---------- Animations au scroll (fade-up, tout le site) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
 /* ---------- Header / nav ---------- */
 .site-header {
   position: sticky;
@@ -376,32 +403,40 @@ body.page-events .nav-events {
   opacity: 0.85;
 }
 
-/* Deux photos superposées (desktop) : la principale plus grande, une
-   seconde plus petite ancrée en bas à droite. Pas de bordure colorée :
-   juste de l'arrondi et une ombre légère pour les détacher l'une de l'autre. */
-.room-visual-duo { overflow: visible; margin-bottom: 1.6rem; }
-.room-visual-duo .room-visual-main {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-  border-radius: var(--radius);
-  box-shadow: 0 10px 26px rgba(20, 17, 13, 0.14);
+/* Deux photos : en diptyque côte à côte sur mobile, puis superposées
+   (principale + médaillon en bas à droite) à partir de 901px. */
+.room-visual-duo {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
 }
+.room-visual-duo .room-visual-main,
 .room-visual-duo .room-visual-thumb {
-  display: none;
+  display: block;
+  flex: 1;
+  height: 170px;
+  width: auto;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 18px rgba(20, 17, 13, 0.16);
 }
 @media (min-width: 901px) {
-  .room-visual-duo .room-visual-thumb {
+  .room-visual-duo {
     display: block;
+    overflow: visible;
+    margin-bottom: 1.6rem;
+  }
+  .room-visual-duo .room-visual-main {
+    width: 100%;
+    height: 300px;
+    box-shadow: 0 10px 26px rgba(20, 17, 13, 0.14);
+  }
+  .room-visual-duo .room-visual-thumb {
     position: absolute;
     width: 48%;
     height: 150px;
-    object-fit: cover;
     bottom: -1.4rem;
     right: 1rem;
-    border: none;
-    border-radius: var(--radius);
     box-shadow: 0 10px 24px rgba(20, 17, 13, 0.22);
   }
 }
@@ -622,6 +657,7 @@ body.page-events .nav-events {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; animation: none !important; }
+  .hero-video-content > *, .reveal { opacity: 1 !important; transform: none !important; }
 }
 
 /* ---------- Responsive ---------- */
@@ -636,7 +672,6 @@ body.page-events .nav-events {
   .gallery-item-big { grid-column: span 2; grid-row: span 2; }
   .gallery-item-wide { grid-column: span 2; }
   .review-card { flex-basis: 260px; }
-  .gallery-grid { grid-template-columns: 1fr; }
   .room-grid { grid-template-columns: 1fr; }
   .menu-grid { grid-template-columns: 1fr; gap: 2rem; }
   .events-list { grid-template-columns: 1fr; }
@@ -652,6 +687,8 @@ body.page-events .nav-events {
 
 @media (max-width: 560px) {
   .teasers { grid-template-columns: 1fr; }
+  .form-actions { flex-direction: column; }
+  .form-actions .btn { width: 100%; }
 }
 
 .main-nav.open {
