@@ -1,36 +1,8 @@
 // Année dans le footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Hero : bascule vidéo desktop/mobile <-> image de repli
-// ---------------------------------------------------------
-// Le <video> a deux <source> (desktop paysage / mobile portrait).
-// Tant qu'aucun des deux fichiers n'existe (ou ne charge pas), on
-// garde l'image de repli affichée. Dès qu'une vidéo est prête à
-// jouer, on la montre et on masque l'image + le badge "Vidéo à venir".
-// -> Il suffit de déposer hero-desktop.mp4 et hero-mobile.mp4 dans
-//    le dossier /videos pour que ça s'active automatiquement.
-const heroVideo = document.getElementById('heroVideo');
-const heroFallback = document.getElementById('heroFallbackImg');
-const heroBadge = document.getElementById('heroBadge');
-
-if (heroVideo) {
-  // Dès que la vidéo a assez de données pour démarrer, on l'affiche
-  // par-dessus l'image de repli et on retire le badge.
-  heroVideo.addEventListener('loadeddata', () => {
-    heroVideo.classList.add('is-ready');
-    if (heroFallback) heroFallback.style.display = 'none';
-    if (heroBadge) heroBadge.remove();
-  });
-
-  // Si la vidéo échoue vraiment à charger (fichier absent, format non
-  // supporté...), on ne fait rien de spécial : l'image de repli reste
-  // affichée par défaut puisque la vidéo n'a jamais display:block tant
-  // qu'elle n'a pas chargé. Pas besoin de minuteur qui la masquerait
-  // prématurément avant qu'elle ait eu le temps de charger.
-  heroVideo.addEventListener('error', () => {
-    heroVideo.remove();
-  });
-}
+// Le hero utilise maintenant une balise <video> native avec l'attribut
+// poster comme repli — plus besoin de JS pour gérer la bascule.
 
 // Modal vidéo chambre (activé automatiquement si des boutons
 // data-room-modal sont présents sur la page — ex. chambres.html)
