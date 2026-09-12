@@ -81,7 +81,7 @@ mainNav.querySelectorAll('a').forEach(link => {
 // backend Supabase (comme sur CMD) pour stocker les demandes.
 // ---------------------------------------------------------
 
-const NUMERO_WHATSAPP = '221784520000'; // à remplacer par le vrai numéro
+const NUMERO_WHATSAPP = '221776982411'; // numéro du gérant, pour les réservations WhatsApp
 const EMAIL_CONTACT = 'contact@lekyzito.sn'; // à remplacer par la vraie adresse
 
 const form = document.getElementById('reservationForm');
@@ -143,7 +143,7 @@ if (form) {
 // entre dans l'écran, avec un léger décalage en cascade dans les grilles.
 const revealTargets = document.querySelectorAll(
   '.teaser-card, .room-card, .gallery-item, .review-card, .event-card, ' +
-  '.menu-block, .space-card, .place-figure, .section-head, .intro-inner'
+  '.menu-block, .space-card, .place-figure, .section-head, .intro-inner, .trust-logo, .faq-item'
 );
 
 if (revealTargets.length && 'IntersectionObserver' in window) {
