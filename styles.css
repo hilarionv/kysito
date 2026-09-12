@@ -130,7 +130,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
 }
 .logo-img { height: 46px; width: auto; display: block; }
-.main-nav { display: flex; align-items: center; gap: 1.8rem; }
+.main-nav { display: flex; align-items: center; gap: 1.4rem; }
 .main-nav a {
   color: var(--ink);
   text-decoration: none;
@@ -154,6 +154,7 @@ body.page-accueil .nav-accueil,
 body.page-chambres .nav-chambres,
 body.page-lelieu .nav-lelieu,
 body.page-restaurant .nav-restaurant,
+body.page-clk .nav-clk,
 body.page-events .nav-events {
   border-bottom-color: var(--mustard);
 }
@@ -615,6 +616,20 @@ body.page-events .nav-events {
   cursor: pointer;
 }
 
+/* ---------- Renvoi CLK (sur la page Restaurant) ---------- */
+.clk-banner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.clk-banner-media { border-radius: var(--radius); overflow: hidden; }
+.clk-banner-media img { width: 100%; height: 300px; object-fit: cover; }
+.clk-banner-content h2 { font-size: 1.8rem; }
+
 /* ---------- Menu (restaurant) ---------- */
 .menu { padding: 3rem 0 5rem; background: var(--off-white); }
 .menu-grid {
@@ -625,6 +640,7 @@ body.page-events .nav-events {
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
 }
+.menu-grid-wide { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem 2.5rem; }
 .menu-block h3 {
   font-size: 1.1rem;
   border-bottom: 1px solid var(--sand-line);
@@ -775,6 +791,8 @@ body.page-events .nav-events {
   .spaces-grid { grid-template-columns: 1fr; }
   .split-header { grid-template-columns: 1fr; }
   .split-header-media img { height: 260px; }
+  .clk-banner { grid-template-columns: 1fr; }
+  .clk-banner-media img { height: 220px; }
   .reservation-inner { grid-template-columns: 1fr; }
   .form-row-split { grid-template-columns: 1fr; }
 

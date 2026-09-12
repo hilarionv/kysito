@@ -26,6 +26,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://complexelekyzito.com/clk.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://complexelekyzito.com/events.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
